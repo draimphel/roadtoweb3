@@ -1,21 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox");
 
-/** @type import('hardhat/config').HardhatUserConfig */
-require("dotenv").config();
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
-const CryptoJS = require("crypto-js")
-// const data = fs.readFileSync("./key.json").toString()
-const pwd = process.env.ABCDE
-const encrypted = process.env.EFGHI
-var bytes = CryptoJS.AES.decrypt(encrypted, pwd);
-const PRIVATE_KEY = bytes.toString(CryptoJS.enc.Utf8)
+
+const RPC_URL = process.env.RPC_URL
+const PRIVATE_KEY = process.env.PRIVATE_KEY
+// You need to export an object to set up your config
+// Go to https://hardhat.org/config/ to learn more
+
+
 
 module.exports = {
   solidity: "0.8.10",
   networks: {
     mumbai: {
-      url: process.env.TESTNET_RPC,
+      url: RPC_URL,
       accounts: [PRIVATE_KEY]
     },
   },
